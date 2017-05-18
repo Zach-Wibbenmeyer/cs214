@@ -1,0 +1,191 @@
+Zach Wibbenmeyer
+Professor Nelesen
+CS214
+Lab 2
+
+
+Exercise 1. At line 738, I see that there are cases to print outputs for whenever the user enters a "start" or "stop" command.
+
+Exercise 2: 
+
+     A.	Test inputs: start_
+	WORD
+	_
+	start
+	WORD
+
+	stop
+	WORD
+
+	stop
+	WORD
+
+	start
+	WORD
+
+	start_
+	WORD
+	_
+	stop
+	WORD
+
+	start_________
+	WORD
+	_________
+
+	2
+	NUMBER
+
+	3
+	NUMBER
+
+	3_
+	NUMBER
+	_
+
+
+	_4
+	_NUMBER
+
+
+	B. When you enter an underscore, a underscore will appear at the top of 	the next input, since an underscore is not a valid input.
+
+	C. 
+
+	%{
+	#include <stdio.h>
+	%}
+
+	%%
+	[_0123456789_]+           printf("NUMBER\n");
+	[_a-z__A-Z_][_a-z__A-Z__0-9_]*    printf("WORD\n");
+	%%
+
+
+ 	_start
+	WORD
+
+	start
+	WORD
+
+	start_
+	WORD
+
+	start
+	WORD
+
+	_Abs
+	WORD
+
+	Abs
+	WORD
+
+	Abs_
+	WORD
+
+	Abs
+	WORD
+
+	_4
+	NUMBER
+
+	4
+	NUMBER
+
+	4_
+	NUMBER
+
+	4
+	NUMBER
+
+Exercise 3:
+
+	KEYWORD: class
+	IDENTIFIER: StudentInfo
+	PUNCTUATION: {
+	KEYWORD: public
+	PUNCTUATION: :
+	IDENTIFIER: StudentInfo
+	PUNCTUATION: (
+	PUNCTUATION: )
+	PUNCTUATION: {
+	IDENTIFIER: myGPA
+	OPERATOR: =
+	DOUBLE: 0.0 (0)
+	PUNCTUATION: ;
+	IDENTIFIER: myHours
+	OPERATOR: =
+	INTEGER: 0 (0)
+	PUNCTUATION: ;
+	PUNCTUATION: }
+	IDENTIFIER: StudentInfo
+	PUNCTUATION: (
+	KEYWORD: double
+	IDENTIFIER: gpa
+	PUNCTUATION: ,
+	KEYWORD: int
+	IDENTIFIER: hours
+	PUNCTUATION: )
+	PUNCTUATION: {
+	IDENTIFIER: myGPA
+	OPERATOR: =
+	IDENTIFIER: gpa
+	PUNCTUATION: ;
+	IDENTIFIER: myHours
+	OPERATOR: =
+	IDENTIFIER: hours
+	PUNCTUATION: ;
+	PUNCTUATION: }
+	KEYWORD: private
+	PUNCTUATION: :
+	KEYWORD: double
+	IDENTIFIER: myGPA
+	PUNCTUATION: ;
+	KEYWORD: int
+	IDENTIFIER: myHours
+	PUNCTUATION: ;
+	PUNCTUATION: }
+	PUNCTUATION: ;
+
+Exercise 4:
+
+	heat on
+		Heat turned on or off
+	heat off
+		Heat turned on or off
+	set temperature 15
+		Temperature set
+
+Exercise 5:
+
+	heat on
+		Heat turned on
+	heat off
+		Heat turned off
+	heat on
+		Heat turned on
+	set temperature 10
+		Temperature set to 10
+	set temperature 65
+		Temperature set to 65
+	set temperature 125
+		Temperature set to 125
+	heat off
+		Heat turned off
+
+Exercise 6:
+
+	heat on
+		Heat turned on
+	heat off
+		Heat turned off
+	set temperature 45
+		Temperature set to 45
+	set humidity to 45
+		Humidity set to 45
+
+	
+
+
+	
+

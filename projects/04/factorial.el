@@ -1,0 +1,8 @@
+Debugger entered--Lisp error: (void-variable n)
+  (set n (read))
+  main(3)
+  eval((main 3) nil)
+  eval-last-sexp-1(t)
+  eval-last-sexp(t)
+  eval-print-last-sexp()
+  call-interactively(eval-print-last-sexp nil nil)

@@ -1,0 +1,254 @@
+Script started on Thu 11 Feb 2016 04:19:27 PM EST
+zdw3@hollerith:~/workspace/cs214/projects/01$ cat ci  rectangle_area.java
+/* rectangle_area.java computes the area of a rectangle.
+ *
+ * Input: The two lengths of the rectangle.
+ * Precondition: The lengths are positive numbers.
+ * Output: The area of the rectangle.
+ *
+ * Begun by: Dr. Nelesen, for CS 214, at Calvin College.
+ * Completed by: Zach Wibbenmeyer
+ * Date: February 11, 2016
+ **********************************************************/
+
+import java.util.Scanner;   // include class for scanner
+
+public class rectangle_area {
+
+	/* function rectangleArea() computes a rectangle's area
+	 * @param: l, w, doubles
+	 * Precondition: l and w are not negative
+	 * Returns: the area of the rectangle
+	 */
+	public static double rectangleArea(double l, double w) {
+		return l * w;		// return the area
+	}
+
+   // main program
+   public static void main(String[] args) {
+      
+      // Create a connection named keyboard to standard in
+      Scanner keyboard = new Scanner(System.in);
+
+      // prompt for the width
+      System.out.println("To compute the area of the rectangle, enter the width: ");
+
+      // Get the first length from the user
+      double width = keyboard.nextDouble();
+
+      // Prompt for the length
+      System.out.println("Now enter the length: ");
+
+      // Get the length from the user
+      double length = keyboard.nextDouble();
+
+      // output the area
+      System.out.println("The area is " + rectangleArea(width, length));
+   }
+}
+      
+zdw3@hollerith:~/workspace/cs214/projects/01$ javac cir   rectangle_area.java
+zdw3@hollerith:~/workspace/cs214/projects/01$ java re  rectangle_area
+To compute the area of the rectangle, enter the width: 
+3
+Now enter the length: 
+2
+The area is 6.0
+zdw3@hollerith:~/workspace/cs214/projects/01$ java rectangle_area
+To compute the area of the rectangle, enter the width: 
+5
+Now enter the length: 
+6
+The area is 30.0
+zdw3@hollerith:~/workspace/cs214/projects/01$ java rectangle_area
+To compute the area of the rectangle, enter the width: 
+3.5
+Now enter the length: 
+4.5
+The area is 15.75
+zdw3@hollerith:~/workspace/cs214/projects/01$ exit
+
+Script done on Thu 11 Feb 2016 04:20:36 PM EST
+Script started on Thu 11 Feb 2016 04:21:04 PM EST
+zdw3@hollerith:~/workspace/cs214/projects/01$ cat   ca  ca  cat re  rrec    rectangle_area.adb
+-- rectangle_area.adb computes the area of a rectangle.
+--
+-- Input: The lengths of the rectangle.
+-- Precondition: The lengths are positive numbers.
+-- Output: The area of the rectangle.
+--
+-- Begun by: Dr. Nelesen, CS 214 at Calvin College.
+-- Completed by: Zach Wibbenmeyer
+-- Date: February 12, 2016
+----------------------------------------------------
+
+-- Import the necessary libraries
+with Ada.Text_IO, Ada.Float_Text_IO;
+use Ada.Text_IO, Ada.Float_Text_IO;
+
+procedure rectangle_area is
+
+	-- Determine variables as floats
+	width, length, area : float;
+
+	-- function rectangleArea computes the rectangle's area
+	-- @param: l, w, floats
+	-- Precondition: l, w must not be negative
+	-- Return: the area of the rectangle
+	---------------------------------------------------------
+	function rectangleArea(l, w : in float) return float is
+	begin 
+	   return l * w;
+	end rectangleArea;
+
+------------ Main Program -------------------------
+
+begin 
+   --- Prompt for the length
+   Put_Line("To compute the area of the rectangle,");
+   Put("enter the length: ");
+   Get(length);
+
+   --- Prompt for the width
+   Put_Line("To contine to compute the area,");
+   Put("enter the width: ");
+   Get(width);
+
+   -- Calculate the area
+   area := rectangleArea(length, width);
+   
+   -- Print the area
+   Put("The area is: ");
+   Put(area);
+   New_Line;
+end rectangle_area;
+zdw3@hollerith:~/workspace/cs214/projects/01$ gnatmake rectangle_area
+gnatmake: "rectangle_area" up to date.
+zdw3@hollerith:~/workspace/cs214/projects/01$ . gnatmake rectangle_area[1Pcat rectangle_area.adb[3Pjava rectangle_areacat rectangle_area.adbgnatmake rectangle_area[K./re    ./rectangle_area 
+To compute the area of the rectangle,
+enter the length: 3
+To contine to compute the area,
+enter the width: 2
+The area is:  6.00000E+00
+zdw3@hollerith:~/workspace/cs214/projects/01$ ./rectangle_area 
+To compute the area of the rectangle,
+enter the length: 5
+To contine to compute the area,
+enter the width: 6
+The area is:  3.00000E+01
+zdw3@hollerith:~/workspace/cs214/projects/01$ ./rectangle_area 
+To compute the area of the rectangle,
+enter the length: 3.5
+To contine to compute the area,
+enter the width: 4.5
+The area is:  1.57500E+01
+zdw3@hollerith:~/workspace/cs214/projects/01$ exit
+
+Script done on Thu 11 Feb 2016 04:22:16 PM EST
+;;; rectangle_area.el computes the area of a rectangle. 
+;;;                                                                     
+;;; Input: The length and width of the rectangle. 
+;;; Precondition: The length and width are positive numbers.                
+;;; Output: The area of the rectangle.                                    
+;;; 
+;;; Begun by: Dr. Nelesen, for CS 214 at Calvin College.
+;;; Completed by: Zach Wibbenmeyer
+;;; Date: February 12, 2016
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;                   
+
+;;; function rectangleArea computes a rectangle's area
+;;; @param: l, w, numbers
+;;; Precondition: l and w and positive
+;;; Return: the area of the rectangle
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; Create a function
+(defun rectangleArea (length width)
+  ;;; Calculate the area of the rectangle
+  "Compute the area of the rectangle, passed it's length and width."
+  (* length width))
+
+rectangleArea
+
+;;; Create a function
+(defun rectangle_area(l w)
+  "Compute the area of the rectangle, given it's length and width interactively."
+  
+  ;;; Prompt the user for the length and width
+  (interactive "nLength: \nnWidth: ")
+  
+  ;;; Calculate the area
+  (setq area (rectangleArea l w))
+ 
+  ;;; Print the area
+  (message "The rectangle's area is %f." area))
+
+rectangle_area
+
+
+
+(rectangleArea 2 3)
+6
+
+(rectangleArea 5 6)
+30
+
+(rectangleArea 3.5 4.5)
+15.75
+
+Script started on Thu 11 Feb 2016 07:16:22 PM EST
+zdw3@hopper:~/workspace/cs214/projects/01$ cat rectangle_area.rb
+#! /usr/bin/ruby
+# rectangle_area.rb computes the area of a rectangle
+# 
+# Input: the length and width of the rectangle
+# Precondition: the length and width are positive
+# Output: the area of the rectangle.
+#
+# Begun by: Dr. Nelesen, for CS 214 at Calvin College.
+# Completed by: Zach Wibbenmeyer
+# Date: February 12, 2016
+###############################################################
+
+# function rectangleArea returns a rectangle's area, given its length and width
+# @param: l, w, numbers
+# Precondition: l and w are positive
+# Return: the area of the rectangle
+
+def rectangleArea(l, w)
+	#Calculate the area
+	l * w
+end
+
+# Main program
+
+if __FILE__ == $0
+
+	#Prompt the user for the length
+	print "To calculate the area of a rectangle, enter the length: "
+	length = gets.chomp.to_f
+	
+	#Prompt the user for the width
+	print "Now, enter the width: "
+	width = gets.chomp.to_f
+
+	#Print the area
+	print "Area is: "
+	#Call the rectangleArea function
+	puts rectangleArea(length, width)
+end
+zdw3@hopper:~/workspace/cs214/projects/01$ u ruby rectangle_area.rb
+To calculate the area of a rectangle, enter the length: 2
+Now, enter the width: 3
+Area is: 6.0
+zdw3@hopper:~/workspace/cs214/projects/01$ ruby rectangle_area.rb
+To calculate the area of a rectangle, enter the length: 5
+Now, enter the width: 6
+Area is: 30.0
+zdw3@hopper:~/workspace/cs214/projects/01$ ruby rectangle_area.rb
+To calculate the area of a rectangle, enter the length: 3.5
+Now, enter the width: 4.5
+Area is: 15.75
+zdw3@hopper:~/workspace/cs214/projects/01$ exit
+
+Script done on Thu 11 Feb 2016 07:17:02 PM EST

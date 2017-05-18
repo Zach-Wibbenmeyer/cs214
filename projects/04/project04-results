@@ -1,0 +1,245 @@
+Script started on Sun 06 Mar 2016 09:16:27 PM EST
+zdw3@chomsky:~/workspace/cs214/projects/04$ cat f Facotir    torial.java
+/* Factorial.java calculates the factorial of a given double
+ *
+ * Input: n, a double
+ * Begun by: Nelesen, for CS 214 at Calvin College.
+ * Completed by: Zach Wibbenmeyer
+ * Date: March 7, 2016
+ ********************************************************/
+
+import java.util.Scanner;		// Get input
+
+/* Main class for computing the factorial of a double */
+public class Factorial {
+
+	/* factorial() method - computes the factorial of a double
+	 * @param: n (type = double);
+	 * @return: a double
+	 * Precondition: n must be an integer double
+	 */
+	public static double factorial(double n) {
+		// Create a local variable
+		double answer = 1.0;
+
+		// Main for loop for factorial computation
+		for (int i = 2; i <= n; i++) {
+			answer *= i;
+		}
+		return answer;
+	}
+
+	// Main program
+	public static void main(String[] args) {
+		// Link to the keyboard
+		Scanner keyboard = new Scanner(System.in);
+		// Prompt user for a number
+		System.out.println("To compute n!,");
+		System.out.println("enter n: ");
+
+		// Compute the factorial using the method above
+		double num = keyboard.nextDouble();
+		System.out.println(factorial(num));
+	}
+}zdw3@chomsky:~/workspace/cs214/projects/04$ javac Factoi rial.java
+zdw3@chomsky:~/workspace/cs214/projects/04$ java Factorial
+To compute n!,
+enter n: 
+3
+6.0
+zdw3@chomsky:~/workspace/cs214/projects/04$ java Factorial
+To compute n!,
+enter n: 
+
+4
+24.0
+zdw3@chomsky:~/workspace/cs214/projects/04$ java Factorial
+To compute n!,
+enter n: 
+5
+120.0
+zdw3@chomsky:~/workspace/cs214/projects/04$ java Factorial
+To compute n!,
+enter n: 
+6
+720.0
+zdw3@chomsky:~/workspace/cs214/projects/04$ java Factorial
+To compute n!,
+enter n: 
+7
+5040.0
+zdw3@chomsky:~/workspace/cs214/projects/04$ exit
+
+Script done on Sun 06 Mar 2016 09:17:11 PM EST
+Script started on Sun 06 Mar 2016 09:17:28 PM EST
+zdw3@chomsky:~/workspace/cs214/projects/04$ cat factorial.adb
+-- Factorial.adb computes the factorial of a given number
+--
+-- Input: n, a double
+-- Begun by: Dr. Adams, for CS 214 at Calvin College.
+-- Completed by: Zach Wibbenmeyer
+-- Date: March 7, 2016
+--------------------------------------------------------------
+
+-- Include the necessary libraries
+with Ada.Text_IO, Ada.Float_Text_IO, Ada.Integer_Text_IO;
+use Ada.Text_IO, Ada.Float_Text_IO, Ada.Integer_Text_IO;
+
+
+procedure factorial is
+
+    -- Declare global variables
+    num : Integer;
+    answer : Integer;
+
+    -- computer_factorial() method - computes the factorial of an integer
+    -- @param: n (type = integer)
+    -- @return: answer (type = integer)
+    -- Precondition: n must be an integer
+    function compute_factorial(n: in integer) return integer is
+    begin
+	answer := 1;
+	-- Main for loop to calculate factorials
+	For_Loop :
+	    for i in 2 .. n 
+            loop
+	        answer := answer * i;
+	    end loop For_Loop;
+	return answer;
+    end compute_factorial;
+
+
+-- Main program
+begin
+    -- Prompt the user for an integer
+    Put_Line("To computer n!, ");
+    Put("enter n: ");
+    -- Receive integer
+    Get(num);
+    -- Compute factorial using method
+    Put(compute_factorial(num));
+    New_Line;
+end factorial;
+zdw3@chomsky:~/workspace/cs214/projects/04$ gnatmake factorial.adb
+gcc-4.6 -c factorial.adb
+gnatbind -x factorial.ali
+gnatlink factorial.ali
+zdw3@chomsky:~/workspace/cs214/projects/04$ ./factorial
+To computer n!, 
+enter n: 3
+          6
+zdw3@chomsky:~/workspace/cs214/projects/04$ ./factorial
+To computer n!, 
+enter n: 4
+         24
+zdw3@chomsky:~/workspace/cs214/projects/04$ ./factorial
+To computer n!, 
+enter n: 5
+        120
+zdw3@chomsky:~/workspace/cs214/projects/04$ ./factorial
+To computer n!, 
+enter n: 6
+        720
+zdw3@chomsky:~/workspace/cs214/projects/04$ ./factorial
+To computer n!, 
+enter n: 7
+       5040
+zdw3@chomsky:~/workspace/cs214/projects/04$ exit
+
+Script done on Sun 06 Mar 2016 09:17:58 PM EST
+;;; factorial.el calculates the factorial for a given number
+;;; By: Zach Wibbenmeyer
+;;; Date: March 7, 2016
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;; factorial() method - calculates the factorial for an integer
+;;; @param: n (type = integer)
+;;; @return: an integer
+;;; Precondition: n must be an integer
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun factorial(n)
+  ;;; if n = 1
+  (if (= n 1)
+      1 ;;; return 1
+    (* n (factorial (- n 1)))))
+
+;;; Compile the method
+factorial
+
+(factorial 3)
+6
+
+(factorial 4)
+24
+
+(factorial 5)
+120
+
+(factorial 6)
+720
+
+(factorial 7)
+5040
+
+;;; Main program
+(defun main(num)
+  (interactive "nTo calculate n!, please enter n: ")
+  (set n(read))
+  (setq fact (factorial(num)))
+  (message "The factorial of n is %f", fact))
+
+main
+Script started on Sun 06 Mar 2016 09:38:12 PM EST
+zdw3@chomsky:~/workspace/cs214/projects/04$ cat factorial.rb
+#! /usr/bin/ruby
+# factorial.rb computes the factorial of a given number
+#
+# Begun by: Dr. Nelesen, for CS 214 at Calvin College.
+# Completed by: Zach Wibbenmeyer
+# Date: March 7, 2016
+############################################################
+
+# computeFactorial() method - computes the factorial of an integer
+# @param: n
+# @return: a float
+# Precondition: n must be an integer
+def computeFactorial(n)
+	# Create a local variable
+	answer = 1.0
+
+	# Main for loop for calculating factorial
+	for i in 2 .. n
+		answer *= i
+
+	end
+	return answer
+end
+
+# Main program
+if __FILE__ == $0
+
+	# Prompt user for a number
+	print "To compute n!, enter n: "
+	# Receive number
+	num = gets.chomp.to_f
+	# Compute factorial using method
+	puts computeFactorial(num)
+endzdw3@chomsky:~/workspace/cs214/projects/04$ ruby factorial.rb
+To compute n!, enter n: 3
+6.0
+zdw3@chomsky:~/workspace/cs214/projects/04$ ruby factorial.rb
+To compute n!, enter n: 4
+24.0
+zdw3@chomsky:~/workspace/cs214/projects/04$ ruby factorial.rb
+To compute n!, enter n: 5
+120.0
+zdw3@chomsky:~/workspace/cs214/projects/04$ ruby factorial.rb
+To compute n!, enter n: 6
+720.0
+zdw3@chomsky:~/workspace/cs214/projects/04$ ruby factorial.rb
+To compute n!, enter n: 7
+5040.0
+zdw3@chomsky:~/workspace/cs214/projects/04$ exit
+
+Script done on Sun 06 Mar 2016 09:38:50 PM EST

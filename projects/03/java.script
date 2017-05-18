@@ -1,0 +1,93 @@
+Script started on Mon 22 Feb 2016 04:16:08 PM EST
+zdw3@eckert-mauchly:~/workspace/cs214/projects/03$ cat grades.java
+/* grades.java is a driver for function letterGrade().
+ * By: Zach Wibbenmeyer
+ * Date: February 26, 2016
+ ****************************************************************/
+
+
+// Import the necessary libraries
+import java.util.Scanner;
+
+
+public class grades {
+
+   /* letterGrade() method - Displays the letter grade for the given average
+    * @param: average (type = int)
+    * @return: various letter grades (type = char)
+    * Precondition: An int for the average must be entered
+    */
+   public static char letterGrade(int average) {
+      // Calculates the average
+      switch (average / 10) {
+	 // Various cases
+         case 10: case 9:
+	    return 'A';
+	 case 8:
+	    return 'B';
+	 case 7:
+	    return 'C';
+	 case 6:
+	    return 'D';
+	 default:
+	    return 'F';
+      }
+   }
+
+
+   // Main program
+   public static void main(String[] args) {
+      // Prompt for the average
+      Scanner keyboard = new Scanner(System.in);
+      System.out.println("\nEnter the average score: ");
+
+      // Read the average
+      int avg = keyboard.nextInt();
+      // Print the letter grade
+      System.out.println(letterGrade(avg));
+   }
+}
+zdw3@eckert-mauchly:~/workspace/cs214/projects/03$ javac grades.java
+zdw3@eckert-mauchly:~/workspace/cs214/projects/03$ java    java grades
+
+Enter the average score: 
+95
+A
+zdw3@eckert-mauchly:~/workspace/cs214/projects/03$ java grades
+
+Enter the average score: 
+100
+A
+zdw3@eckert-mauchly:~/workspace/cs214/projects/03$ java grades
+
+Enter the average score: 
+105
+A
+zdw3@eckert-mauchly:~/workspace/cs214/projects/03$ java grades
+
+Enter the average score: 
+85
+B
+zdw3@eckert-mauchly:~/workspace/cs214/projects/03$ java grades
+
+Enter the average score: 
+75
+C
+zdw3@eckert-mauchly:~/workspace/cs214/projects/03$ java grades
+
+Enter the average score: 
+65
+D
+zdw3@eckert-mauchly:~/workspace/cs214/projects/03$ java grades
+
+Enter the average score: 
+55
+F
+zdw3@eckert-mauchly:~/workspace/cs214/projects/03$ java grades
+
+Enter the average score: 
+23
+F
+zdw3@eckert-mauchly:~/workspace/cs214/projects/03$ exit
+
+Script done on Mon 22 Feb 2016 04:17:09 PM EST

@@ -1,0 +1,87 @@
+Script started on Tue 16 Feb 2016 08:10:49 PM EST
+zdw3@kay:~/workspace/cs214/labs/02$ cat   cat   cat   cat example6.lex example6.y
+%{
+#include <stdio.h>
+#include "example6.tab.h"
+%}
+%%
+[0-9]+                  yylval = atoi(yytext); return NUMBER;
+heat                 	return TOKHEAT;
+on|off                  yylval = !strcmp(yytext,"on"); return STATE;
+set                     return TOKSET;
+temperature             return TOKTEMPERATURE;
+humidity		return TOKHUMIDITY;
+to 			return TOKTO;
+\n                      /* ignore end of line */;
+[ \t]+                  /* ignore whitespace */;
+%%
+%{
+#include <stdio.h>
+#include <string.h>
+ 
+void yyerror(const char *str) {
+        fprintf(stderr,"error: %s\n",str);
+}
+ 
+int yywrap() {
+        return 1;
+} 
+  
+main() {
+        yyparse();
+} 
+
+%}
+
+%token NUMBER TOKHEAT STATE TOKSET TOKTEMPERATURE TOKHUMIDITY TOKTO
+%%
+
+commands: /* empty */
+        | commands command
+        ;
+
+command:
+        heat_switch
+        | temperature_set | humidity_set
+        ;
+
+heat_switch:
+        TOKHEAT STATE
+        {
+                if ($2) {  /* if STATE == 1 */
+                        printf("\tHeat turned on\n");
+                } else {
+                        printf("\tHeat turned off\n");
+                }
+        }
+        ;
+
+temperature_set:
+        TOKSET TOKTEMPERATURE NUMBER
+        {
+                printf("\tTemperature set to %d\n",$3);
+        }
+        ;
+
+humidity_set:
+        TOKSET TOKHUMIDITY TOKTO NUMBER
+        {
+                printf("\tHumidity set to %d\n",$4);
+        }
+        ;
+zdw3@kay:~/workspace/cs214/labs/02$ make
+make: `example6' is up to date.
+zdw3@kay:~/workspace/cs214/labs/02$ / ./example6
+
+heat on
+	Heat turned on
+heat off
+	Heat turned off
+set temperature 22
+	Temperature set to 22
+set humidity to 45
+	Humidity set to 45
+^C
+zdw3@kay:~/workspace/cs214/labs/02$ exit
+
+Script done on Tue 16 Feb 2016 08:12:28 PM EST

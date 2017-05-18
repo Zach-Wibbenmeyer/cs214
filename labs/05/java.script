@@ -1,0 +1,86 @@
+Script started on Tue 08 Mar 2016 07:48:44 PM EST
+zdw3@hoare:~/workspace/cs214/labs/05$ cat Split.java
+/* Split.java is a class and program that splits a string
+ * into two substrings.
+ * 
+ * Begun by: Serita Nelesen
+ * Completed by: Zach Wibbenmeyer
+ * Date: March 9, 2016
+ ***************************************************************/
+
+// import the necessary libraries
+import java.util.Scanner;
+
+// java class Split
+public class Split
+{
+  // main program
+  public static void main(String[] args)
+    {
+      Scanner keyboard = new Scanner(System.in);
+      // prompt for the string
+      System.out.println("\nTo split a string, enter the string: ");
+      String theString = keyboard.next();
+      
+      // prompt for splitting position
+      System.out.println("\nEnter the split position: ");
+      int position = keyboard.nextInt();
+
+      //Create list, compute results and print
+      String [] resultList = new String[2];
+      splitter(theString, position, resultList);
+      System.out.println("\nThe first part is " + resultList[0] + "\n and the second part is " + resultList[1]);
+      
+    }
+  
+  /* splitter() splits a string according to the position specified
+   * Receive: 	theString - the string to be split
+   * 		pos - the position at which to split
+   *            results - an array of strings in which to place results
+   *****************************************************/
+  // replace this line with a definition for splitter
+
+  public static void splitter(String theString, int pos, String[] results) {
+      
+      // calculate the first part of the string
+      results[0] = theString.substring(0, pos);
+      // calculate the second part of the string
+      results[1] = theString.substring(pos, theString.length() );
+  }
+
+
+}
+zdw3@hoare:~/workspace/cs214/labs/05$ javac Split.java
+zdw3@hoare:~/workspace/cs214/labs/05$ java Split
+
+To split a string, enter the string: 
+hello
+
+Enter the split position: 
+0
+
+The first part is 
+ and the second part is hello
+zdw3@hoare:~/workspace/cs214/labs/05$ java Split
+
+To split a string, enter the string: 
+hello
+
+Enter the split position: 
+^[[A    3
+
+The first part is hel
+ and the second part is lo
+zdw3@hoare:~/workspace/cs214/labs/05$ java Split
+
+To split a string, enter the string: 
+hello
+
+Enter the split position: 
+5
+
+The first part is hello
+ and the second part is 
+zdw3@hoare:~/workspace/cs214/labs/05$ exit
+
+Script done on Tue 08 Mar 2016 07:49:27 PM EST

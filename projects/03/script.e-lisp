@@ -1,0 +1,70 @@
+;;; grades.el is a driver function for letterGrade
+;;; By: Zach Wibbenmeyer
+;;; Date: February 26, 2016
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;; letterGrade() method - returns a letter grade for the given average
+;;; @param: average (type = int)
+;;; @return: a grade (type = character)
+;;; Precondition: average must be an integer
+(defun letterGrade (average)
+  (cond ((>= (/ average 10) 10) "A")
+	((>= (/ average 10) 9) "A")
+	((>= (/ average 10) 8) "B")
+	((>= (/ average 10) 7) "C")
+	((>= (/ average 10) 6) "D")
+	(t "F")))
+
+;;; Compile the letterGrade method
+letterGrade
+
+;;; Main program
+(defun main (avg)
+  ;;; Prompt for the average
+  (interactive "sEnter the average grade: ")
+  ;;; Compute the letter grade
+  (message (letterGrade avg)))
+
+;;; Compile the main method
+main
+
+(main 95)
+"A"
+
+(main 85)
+"B"
+
+(main 75)
+"C"
+
+(main 65)
+"D"
+
+(main 55)
+"F"
+
+(main 22)
+"F"
+
+(letterGrade 95)
+"A"
+
+(letterGrade 85)
+"B"
+
+(letterGrade 75)
+"C"
+
+(letterGrade 65)
+"D"
+
+(letterGrade 55)
+"F"
+
+(letterGrade 22)
+"F"
+
+
+
+

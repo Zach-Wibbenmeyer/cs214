@@ -1,0 +1,39 @@
+/* LogTable.java displays a table of logarithms.
+ *
+ * Input: start, stop and increment, three doubles.
+ * PRE: start < stop && increment > 0.
+ * Output: A table of logarithms from start to stop,
+ *         with increment as the step value.
+ * Begun by: Nelesen, for CS 214 at Calvin College.
+ * Completed by: Zach Wibbenmeyer
+ * Date: March 3, 2016
+ ********************************************************/
+import java.util.Scanner; 		// Get input
+
+/* Main class for calculating the log tables */
+class LogTable {
+
+  public static void main(String[] args) {
+    Scanner keyboard = new Scanner(System.in);
+    System.out.println("To display a table of logarithms,");
+    System.out.println("enter the start, stop and increment values: ");
+    double start, stop, increment;
+    start = keyboard.nextDouble();
+    stop = keyboard.nextDouble();
+    increment = keyboard.nextDouble();
+
+    // Create a variable to iterate through
+    double count = start;
+    // Create a while loop
+    while (count < stop) {
+    	// Print out the logarithm table
+	System.out.printf("The logarithm of %.1f is %f \n", count, 
+	Math.log10(count));
+	// Increment the variable count
+	count += increment;
+    }
+    
+    
+  }
+}
+

@@ -1,0 +1,29 @@
+;;; factorial.el calculates the factorial for a given number
+;;; By: Zach Wibbenmeyer
+;;; Date: March 7, 2016
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;; factorial() method - calculates the factorial for an integer
+;;; @param: n (type = integer)
+;;; @return: an integer
+;;; Precondition: n must be an integer
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun factorial(n)
+  ;;; if n = 1
+  (if (= n 1)
+      1 ;;; return 1
+    (* n (factorial (- n 1)))))
+
+;;; Compile the method
+factorial
+
+
+;;; Main program
+(defun main(num)
+  (interactive "nTo calculate n!, please enter n: ")
+  (set n(read))
+  (setq fact (factorial(num)))
+  (message "The factorial of n is %f", fact))
+
+main

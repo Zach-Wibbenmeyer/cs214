@@ -1,0 +1,288 @@
+Script started on Tue 08 Mar 2016 07:48:44 PM EST
+zdw3@hoare:~/workspace/cs214/labs/05$ cat Split.java
+/* Split.java is a class and program that splits a string
+ * into two substrings.
+ * 
+ * Begun by: Serita Nelesen
+ * Completed by: Zach Wibbenmeyer
+ * Date: March 9, 2016
+ ***************************************************************/
+
+// import the necessary libraries
+import java.util.Scanner;
+
+// java class Split
+public class Split
+{
+  // main program
+  public static void main(String[] args)
+    {
+      Scanner keyboard = new Scanner(System.in);
+      // prompt for the string
+      System.out.println("\nTo split a string, enter the string: ");
+      String theString = keyboard.next();
+      
+      // prompt for splitting position
+      System.out.println("\nEnter the split position: ");
+      int position = keyboard.nextInt();
+
+      //Create list, compute results and print
+      String [] resultList = new String[2];
+      splitter(theString, position, resultList);
+      System.out.println("\nThe first part is " + resultList[0] + "\n and the second part is " + resultList[1]);
+      
+    }
+  
+  /* splitter() splits a string according to the position specified
+   * Receive: 	theString - the string to be split
+   * 		pos - the position at which to split
+   *            results - an array of strings in which to place results
+   *****************************************************/
+  // replace this line with a definition for splitter
+
+  public static void splitter(String theString, int pos, String[] results) {
+      
+      // calculate the first part of the string
+      results[0] = theString.substring(0, pos);
+      // calculate the second part of the string
+      results[1] = theString.substring(pos, theString.length() );
+  }
+
+
+}
+zdw3@hoare:~/workspace/cs214/labs/05$ javac Split.java
+zdw3@hoare:~/workspace/cs214/labs/05$ java Split
+
+To split a string, enter the string: 
+hello
+
+Enter the split position: 
+0
+
+The first part is 
+ and the second part is hello
+zdw3@hoare:~/workspace/cs214/labs/05$ java Split
+
+To split a string, enter the string: 
+hello
+
+Enter the split position: 
+^[[A    3
+
+The first part is hel
+ and the second part is lo
+zdw3@hoare:~/workspace/cs214/labs/05$ java Split
+
+To split a string, enter the string: 
+hello
+
+Enter the split position: 
+5
+
+The first part is hello
+ and the second part is 
+zdw3@hoare:~/workspace/cs214/labs/05$ exit
+
+Script done on Tue 08 Mar 2016 07:49:27 PM EST
+Script started on Tue 08 Mar 2016 09:59:17 PM EST
+zdw3@hoare:~/workspace/cs214/labs/05$ cat split.adb
+-- split.adb splits an input string about a specified position.
+--
+-- Input: Astring, a string,
+--        Pos, an integer.
+-- Precondition: pos is in Astring'Range.
+-- Output: The substrings Astring(Astring'First..Pos-1) and
+--                        Astring(Pos..Astring'Last).
+--
+-- Begun by: Dr. Adams, for CS 214 at Calvin College.
+-- Completed by: Zach Wibbenmeyer
+-- Date: March 9, 2016
+--------------------------------------------------------------
+
+with Ada.Text_IO, Ada.Integer_Text_IO, Ada.Strings.Fixed;
+use  Ada.Text_IO, Ada.Integer_Text_IO, Ada.Strings.Fixed;
+
+procedure split is
+
+   EMPTY_STRING : String := "                                        ";
+
+   Astring, Part1, Part2 : String  := EMPTY_STRING;
+   Pos, Chars_read       : Natural;
+
+   ------------------------------------------------
+   --  split() splits a string in two.           
+   -- Receive: The_String, the string to be split,
+   --          Position, the split index.        
+   -- PRE: 0 < Position <= The_String.length(). 
+   --     (Ada arrays are 1-relative by default)
+   -- Passback: First_Part - the first substring,
+   --           Last_Part - the second substring.
+   ------------------------------------------------
+   procedure split (The_String : in String; Position : in Integer; First_Part : out String; Last_Part : out String) is
+   begin
+      -- Receive the first part of the string
+      Move(The_String(1..(Position-1)), First_Part);
+      -- Receive the second part of the string
+      Move(The_String(Position..The_String'Length), Last_Part);
+   end split;
+
+
+begin                                           -- Prompt for input
+   Put("To split a string, enter the string: ");
+   Get_Line(Astring, Chars_Read);
+   Put("Enter the split position: ");
+   Get(Pos);
+
+   split(Astring, Pos, Part1, Part2);
+
+   Put("The first part is ");
+   Put_Line(Part1);
+   Put(" and the second part is ");
+   Put_Line(Part2);
+
+end split;
+
+zdw3@hoare:~/workspace/cs214/labs/05$ gnatmake split
+gnatmake: "split" up to date.
+zdw3@hoare:~/workspace/cs214/labs/05$ ./split
+To split a string, enter the string: hello
+Enter the split position: 1
+The first part is                                         
+ and the second part is hello                                   
+zdw3@hoare:~/workspace/cs214/labs/05$ ./split
+To split a string, enter the string: hello
+Enter the split position: 4
+The first part is hel                                     
+ and the second part is lo                                      
+zdw3@hoare:~/workspace/cs214/labs/05$ ./split
+To split a string, enter the string: hello
+Enter the split position: 6
+The first part is hello                                   
+ and the second part is                                         
+zdw3@hoare:~/workspace/cs214/labs/05$ exit
+
+Script done on Tue 08 Mar 2016 09:59:54 PM EST
+;;; split.el splits a string into two substrings.
+;;;
+;;; Input: aString, the string to be split,
+;;;        pos, the split position.
+;;; Output: the substring of aString before pos, and
+;;;         the substring of aString from pos onwards.
+;;;
+;;; Begun by: Dr. Adams, for CS 214 at Calvin College.
+;;; Completed by: Zach Wibbenmeyer
+;;; Date: March 9, 2016
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:;
+;;; split() splits a string into its two substrings.  
+;;; Receive: aString, the string to be split,         
+;;;        pos, the split position.                   
+;;; PRE: 0 <= pos < the length of aString.
+;;; Return: the substring of aString before pos, and  
+;;;         the substring of aString from pos onwards.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun split (aString pos)
+  ;;; define the first part of the list
+  (setq firstPart (substring aString 0 pos))
+  ;;; define the second part of the list
+  (setq lastPart (substring aString pos))
+  ;;; combine the two parts
+  (list firstPart lastPart)
+)
+
+;;; compile the method
+split
+
+
+
+;;; main program
+(defun main (aString pos)
+  (interactive "sEnter the string to be split: \nnEnter the split position")
+  (setq result (split aString pos))
+  (setq part1 (elt result 0))
+  (setq part2 (elt result 1))
+  (message "The first part is %s and the second part is %s" part1 part2))
+
+;;; compile the main program
+main
+
+
+
+(main "hello" 0)
+"The first part is  and the second part is hello"
+
+
+(main "hello" 3)
+"The first part is hel and the second part is lo"
+
+
+
+(main "hello" 5)
+"The first part is hello and the second part is "
+
+(split "hello" 0)
+("" "hello")
+
+(split "hello" 3)
+("hel" "lo")
+
+(split "hello" 5)
+("hello" "")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+Script started on Tue 08 Mar 2016 11:42:25 PM EST
+zdw3@hoare:~/workspace/cs214/labs/05$ ruby split.rb
+To split a string, enter the string: ^[[A    el  hello
+Enter the split position: 0
+The first part is: 
+and the second part is: hello
+zdw3@hoare:~/workspace/cs214/labs/05$ ruby split.rb
+To split a string, enter the string: hello
+Enter the split position: 3
+The first part is: hel
+and the second part is: lo
+zdw3@hoare:~/workspace/cs214/labs/05$ ruby split.rb
+To split a string, enter the string: hello' 
+Enter the split position: 5
+The first part is: hello
+and the second part is: 
+zdw3@hoare:~/workspace/cs214/labs/05$ exit
+
+Script done on Tue 08 Mar 2016 11:42:56 PM EST
